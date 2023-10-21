@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'hateykhori',
     'accounts',
     'store',
+    'cart',
 ]
 
 JAZZMIN_SETTINGS = {
@@ -204,6 +205,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'hateykhori.context_processors.menu_links',
             ],
         },
     },
