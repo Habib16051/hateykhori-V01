@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from cart.views import _cart_id
-from store.models import Product
+from store.models import Product, Variation
 from hateykhori.models import Category
 from cart.models import Cart, CartItem
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -24,7 +24,7 @@ def store(request, category_slug=None):
     else:
     
         products = Product.objects.all().filter(
-            is_available=True).order_by('-created_date')
+            is_available=True).order_by('id')
         paginator = Paginator(products, 6)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page) 
@@ -43,6 +43,7 @@ def product_detail(request, category_slug, product_slug):
     try:
         single_product = Product.objects.get(category__slug = category_slug, slug = product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id = _cart_id(request), product=single_product).exists()
+        # variation = Variation.objects.all()
         # return HttpResponse(in_cart)
         # exit()
     except Exception as e:
@@ -51,6 +52,7 @@ def product_detail(request, category_slug, product_slug):
     context = {
         'single_product': single_product,
         'in_cart': in_cart,
+        # 'variation' : variation,
     }
     
     return render(request, 'product_detail.html', context)

@@ -56,7 +56,15 @@
 
     <!-- Footer -->
 
-    {% include 'includes/footer.html' %}
+    
+    {% block footer %}
+
+        {% include 'includes/footer.html' %}
+
+    {% endblock footer %}
+        
+
+   
 
 </body>
 
