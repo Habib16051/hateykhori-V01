@@ -1,0 +1,10 @@
+
+{% autoescape off %}
+
+Hi {{ user.first_name }}
+
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+If you think you are not the right person, then you can ignore this email!
+    
+{% endautoescape %}
