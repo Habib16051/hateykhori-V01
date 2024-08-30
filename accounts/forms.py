@@ -9,15 +9,6 @@ class RegistrationForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'contact', 'email', 'password',]
 
 
-    def __init__(self, *args, **kwargs):
-        super(RegistrationForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs['placeholder'] = 'Enter First Name'
-        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter Last Name'
-        self.fields['contact'].widget.attrs['placeholder'] = 'Enter Contact Number'
-        self.fields['email'].widget.attrs['placeholder'] = 'Enter EMail'
-        for field in self.fields:
-            self.fields[field].widget.attrs['class'] = 'form-control'
-            
             
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
@@ -29,3 +20,12 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError(
                 'Password does not match'
             )
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs['placeholder'] = 'Enter First Name'
+        self.fields['last_name'].widget.attrs['placeholder'] = 'Enter Last Name'
+        self.fields['contact'].widget.attrs['placeholder'] = 'Enter Contact Number'
+        self.fields['email'].widget.attrs['placeholder'] = 'Enter EMail'
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
